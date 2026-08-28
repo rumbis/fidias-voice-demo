@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Πρόταση Ένταξης — Γιώργος Αλεξάνδρου · Άμεση Δημοκρατία</title>
+<style>
+  :root{
+    --ink:#1a2332; --ink-2:#4a5568; --navy:#0f1c2e; --navy-2:#16304a;
+    --gold:#d4a017; --gold-2:#f0c040; --paper:#f7f6f2; --white:#ffffff;
+    --line:#e3e0d8; --teal:#0e7c66;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.65;font-size:16px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  /* ---------- HERO ---------- */
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 70%,#1d3d61 100%);color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-80px;top:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,.28) 0%,transparent 70%)}
+  .hero .tag{display:inline-block;background:rgba(212,160,23,.18);border:1px solid rgba(212,160,23,.5);color:var(--gold-2);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:22px;font-weight:600}
+  .hero h1{font-size:40px;line-height:1.18;font-weight:800;letter-spacing:-.5px;max-width:760px}
+  .hero h1 .gold{color:var(--gold-2)}
+  .hero .sub{margin-top:18px;font-size:17px;color:#c8d4e4;max-width:680px}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:30px;font-size:14px;color:#e8eef6}
+  .hero .meta b{color:#fff}
+  .hero .meta span{color:var(--gold-2)}
+  /* ---------- SECTIONS ---------- */
+  section{padding:52px 0}
+  section.alt{background:var(--white)}
+  .kicker{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+  h2{font-size:28px;font-weight:800;letter-spacing:-.3px;margin-bottom:8px;color:var(--navy)}
+  .lead{font-size:17px;color:var(--ink-2);max-width:760px;margin-bottom:26px}
+  p{margin-bottom:14px}
+  /* ---------- CARDS / TABLES ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:22px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 1px 3px rgba(15,28,46,.05)}
+  .card h4{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .card .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--navy);color:var(--gold-2);font-size:13px;font-weight:800;flex:none}
+  .card p{font-size:14.5px;color:var(--ink-2);margin:0}
+  table{width:100%;border-collapse:collapse;margin-top:20px;background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(15,28,46,.06)}
+  th{background:var(--navy);color:#fff;text-align:left;padding:13px 16px;font-size:13px;letter-spacing:.6px;text-transform:uppercase;font-weight:600}
+  td{padding:13px 16px;border-bottom:1px solid var(--line);font-size:14.5px;vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td b{color:var(--navy)}
+  .price{color:var(--teal);font-weight:700;white-space:nowrap}
+  .highlight-row td{background:#fdf8e7}
+  /* ---------- CALLOUT ---------- */
+  .callout{border-left:4px solid var(--gold);background:#fffaf0;padding:16px 20px;border-radius:0 10px 10px 0;margin:18px 0;font-size:14.5px}
+  .callout b{color:var(--navy)}
+  .warn{border-left-color:#c0392b;background:#fdf3f1}
+  /* ---------- PROOF ---------- */
+  .proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px}
+  .proof .stat{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px;text-align:center}
+  .proof .big{font-size:30px;font-weight:800;color:var(--navy)}
+  .proof .big .u{font-size:18px;color:var(--gold);font-weight:800}
+  .proof .lbl{font-size:12.5px;color:var(--ink-2);margin-top:4px;letter-spacing:.4px}
+  /* ---------- CONTACT ---------- */
+  .contact{background:linear-gradient(135deg,var(--navy) 0%,#16304a 100%);color:#fff;border-radius:18px;padding:38px;margin-top:10px}
+  .contact h2{color:#fff}
+  .contact .lead{color:#c8d4e4}
+  .contact .row{display:flex;flex-wrap:wrap;gap:18px 40px;margin-top:16px}
+  .contact .item{font-size:15px}
+  .contact .item b{display:block;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-2);margin-bottom:2px}
+  .contact a{color:#fff;text-decoration:none;border-bottom:1px dotted var(--gold-2)}
+  /* ---------- FOOT ---------- */
+  footer{padding:34px 0 50px;color:#8a93a2;font-size:13px;text-align:center}
+  .btn{display:inline-block;background:var(--gold);color:var(--navy);font-weight:800;padding:13px 26px;border-radius:10px;text-decoration:none;font-size:15px;margin-top:8px}
+  .btn:hover{background:var(--gold-2)}
+  @media(max-width:640px){.hero h1{font-size:30px}.hero{padding:46px 0}h2{font-size:23px}.contact{padding:26px}}
+  @media print{body{background:#fff}.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}section.alt{background:#fff}.card,.proof .stat{box-shadow:none}}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div class="wrap">
+    <span class="tag">Πρόταση ένταξης στην ομάδα · 28 Αυγούστου 2026</span>
+    <h1>AI Video &amp; Voice Production Engineer<br>για την ομάδα <span class="gold">του Φειδία</span></h1>
+    <p class="sub">Voice cloning με τη φωνή του Φειδία, lip sync και πολύγλωσση μεταγλώττιση σε όλο το περιεχόμενο — με πλήρως τοπική, ιδιόκτητη υποδομή.</p>
+    <p class="sub" style="margin-top:14px"><a href="index.html" style="display:inline-block;background:var(--gold);color:var(--navy);font-weight:800;padding:10px 22px;border-radius:10px;text-decoration:none;font-size:14px">▶ Δείτε τα 11 live δείγματα</a></p>
+    <div class="meta">
+      <span>Από: <b>Γιώργος Αλεξάνδρου</b> · Λευκωσία</span>
+      <span>Προς: <b>Άμεση Δημοκρατία</b> / Ομάδα Φειδία</span>
+      <span>Τύπος: <b>Πλήρης απασχόληση (in-house)</b></span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 1. ΕΙΣΑΓΩΓΗ ================= -->
+<section>
+  <div class="wrap">
+    <div class="kicker">01 · Η πρόταση με μία ματιά</div>
+    <h2>Όχι συνεργάτης από απόσταση — μέλος της ομάδας</h2>
+    <p class="lead">Ζητώ να ενταχθώ στην ομάδα ως μόνιμο μέλος, όχι ως εξωτερικός συνεργάτης, για να χτίσω και να τρέχω το πλήρες σύστημα voice cloning + lip sync + πολύγλωσσης μεταγλώττισης για όλο το περιεχόμενο του Φειδία.</p>
+    <p>Δεν προσφέρω μια υπηρεσία από απόσταση. Προσφέρω ένα <b>δοκιμασμένο pipeline</b>, ήδη δουλεμένο πάνω σε πραγματικό υλικό του Φειδία, που θα παράγει <b>δεκάδες βίντεο την εβδομάδα σε 7+ γλώσσες</b> — με τη φωνή του, με τα χείλη του συγχρονισμένα, χωρίς outsourcing κόστη και χωρίς το υλικό να φεύγει ποτέ από τα χέρια της ομάδας.</p>
+  </div>
+</section>
+
+<!-- ================= 2. ΠΟΙΟΣ ΕΙΜΑΙ ================= -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">02 · Ποιος είμαι</div>
+    <h2>Ο άνθρωπος που χτίζει τα εργαλεία</h2>
+    <p class="lead">Δεν είμαι «χρήστης εργαλείων» — χτίζω τα εργαλεία από το backend μέχρι το τελικό rendered βίντεο.</p>
+    <table>
+      <tr><th>Στοιχείο</th><th>Λεπτομέρεια</th></tr>
+      <tr><td><b>Όνομα</b></td><td>Γιώργος Αλεξάνδρου</td></tr>
+      <tr><td><b>Βάση</b></td><td>Λευκωσία · γραφείο επιχείρησης στη Λεμεσό</td></tr>
+      <tr><td><b>Ιδιότητα</b></td><td>Ιδρυτής της CodeitLab — full-stack web development + custom AI λύσεις</td></tr>
+      <tr><td><b>Τεχνολογίες</b></td><td>Django · Vue.js · Android/Kotlin · Python · AI/ML · pipelines βίντεο/ήχου · αυτοματισμοί</td></tr>
+      <tr><td><b>Εμπειρία</b></td><td>10+ χρόνια ανάπτυξη λογισμικού · εξειδίκευση σε voice cloning, TTS, lip sync, video production</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 3. PROOF OF WORK ================= -->
+<section>
+  <div class="wrap">
+    <div class="kicker">03 · Proof of work</div>
+    <h2>Η δουλειά που ήδη έγινε με τον Φειδία</h2>
+    <p class="lead">Αυτό δεν είναι θεωρητικό pitch. Είναι δουλειά που έχει ήδη παραχθεί — και δείχνεται σε 5 λεπτά.</p>
+    <div class="proof">
+      <div class="stat"><div class="big">11 <span class="u">βίντεο</span></div><div class="lbl">μεταγλωττισμένα με τη φωνή του Φειδία (podcast ES/RU + ελληνικά shorts)</div></div>
+      <div class="stat"><div class="big">7 <span class="u">γλώσσες</span></div><div class="lbl">multilingual dubs σε ελληνικά shorts</div></div>
+      <div class="stat"><div class="big">4 <span class="u">τεχνολογίες</span></div><div class="lbl">OmniVoice · Zonos · XTTS · Piper — δοκιμασμένες, χαρτογραφημένα τα όριά τους</div></div>
+      <div class="stat"><div class="big">100% <span class="u">έτοιμο</span></div><div class="lbl">pipeline: μετάφραση → TTS → assembly → τελικό βίντεο</div></div>
+    </div>
+    <div class="callout"><b>Κυπριακή προφορά:</b> ξέρω ότι η «αθηναϊκή» προφορά δεν αρκεί για τη φωνή του Φειδία. Το σωστό αποτέλεσμα θέλει σωστό dataset και fine-tuning στον δικό του τόνο — αυτό είναι μέρος της δουλειάς μου, όχι afterthought.</div>
+  </div>
+</section>
+
+<!-- ================= 4. ΡΟΛΟΣ ================= -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">04 · Ο ρόλος</div>
+    <h2>Τι αναλαμβάνω</h2>
+    <div class="grid">
+      <div class="card"><h4><span class="num">1</span> Voice cloning του Φειδία</h4><p>Κατασκευή dataset, fine-tuning, φωνή πιστή στην κυπριακή προφορά. Υβριδικό σύστημα: τοπικά μοντέλα για παραγωγή + επιλεκτικά premium ποιότητα όπου χρειάζεται το απόλυτο αποτέλεσμα.</p></div>
+      <div class="card"><h4><span class="num">2</span> Lip sync σε όλα τα βίντεο</h4><p>Σύγχρονο diffusion-based lip sync (LatentSync-class) με φυσικό συγχρονισμό χειλιών — χωρίς τεχνουργήματα περικοπής.</p></div>
+      <div class="card"><h4><span class="num">3</span> Πολύγλωσση παραγωγή</h4><p>Αυτόματη μετάφραση + TTS + lip sync σε 7+ γλώσσες (EN, ES, RU, DE, FR, IT, JA, ZH, κ.ά.) με έλεγχο ποιότητας ανά γλώσσα.</p></div>
+      <div class="card"><h4><span class="num">4</span> Εβδομαδιαίο pipeline</h4><p>Batch processing, αυτοματισμοί, quality control, versioning παραδοτέων — σταθερός ρυθμός χωρίς βραδινές ολονυχτίες render.</p></div>
+      <div class="card"><h4><span class="num">5</span> Υποδομή &amp; συντήρηση</h4><p>Όλα τρέχουν τοπικά στο DGX Spark. Χωρίς recurring API κόστη, χωρίς εξάρτηση από τρίτους.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. ΓΙΑΤΙ IN-HOUSE ================= -->
+<section>
+  <div class="wrap">
+    <div class="kicker">05 · Γιατί in-house</div>
+    <h2>Γιατί εγώ ως μέλος της ομάδας — και όχι εξωτερικός συνεργάτης</h2>
+    <table>
+      <tr><th>Λόγος</th><th>Όφελος για την ομάδα</th></tr>
+      <tr><td><b>Μόνιμη διαθεσιμότητα</b></td><td>Είμαι μέλος της ομάδας, όχι subcontractor με άλλους πελάτες παράλληλα</td></tr>
+      <tr><td><b>Απόρρητο</b></td><td>Το πρόσωπο και η φωνή του Φειδία παραμένουν εντός της ομάδας — κρίσιμο για πολιτικό πρόσωπο</td></tr>
+      <tr><td><b>Ταχύς κύκλος αλλαγών</b></td><td>Ένα βίντεο αλλάζει και ξαναπαράγεται μέσα στην ίδια μέρα</td></tr>
+      <tr><td><b>Κόστος</b></td><td>Σταθερό μηνιαίο κόστος αντί χρέωσης ανά έργο — προβλέψιμο για τον προϋπολογισμό</td></tr>
+      <tr><td><b>Ιδιοκτησία τεχνογνωσίας</b></td><td>Το pipeline και η τεχνογνωσία μένουν στην ομάδα και μεγαλώνουν μαζί με το κανάλι</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 6. DGX SPARK ================= -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">06 · Το hardware</div>
+    <h2>NVIDIA DGX Spark — η ραχοκοκαλιά της παραγωγής</h2>
+    <p class="lead">Ο προσωπικός AI υπερ-υπολογιστής της NVIDIA (GB10 Grace Blackwell): <b>128GB unified memory</b>, ~1 petaFLOP απόδοσης, τρέχει τοπικά μοντέλα έως <b>200 δισεκατομμυρίων παραμέτρων</b> — σε επιτραπέζιο μέγεθος.</p>
+    <table>
+      <tr><th>Λόγος</th><th>Εξήγηση</th></tr>
+      <tr><td><b>Τοπικό lip sync + TTS + fine-tuning</b></td><td>Τρέχουν στο μηχάνημα 24/7 — χωρίς ουρές cloud, χωρίς χρέωση ανά χρήση</td></tr>
+      <tr><td><b>Μηδέν recurring κόστη</b></td><td>Το αντίστοιχο cloud API για bulk (ElevenLabs-class) κοστίζει €100–300+/μήνα — το DGX Spark το εξαλείφει</td></tr>
+      <tr><td><b>Privacy πρώτης γραμμής</b></td><td>Το πρόσωπο και η φωνή του Φειδία δεν ανεβαίνουν ποτέ σε τρίτες υπηρεσίες</td></tr>
+      <tr><td><b>Ταχύτητα</b></td><td>Ένα βίντεο παραδίδεται σε λεπτά — όχι σε ώρες με ουρές Colab/Kaggle</td></tr>
+    </table>
+    <div class="callout warn"><b>Κόστος:</b> περίπου <b>€3.900–4.500</b> εφάπαξ (συμπ. μεταφορικά/ΦΠΑ). ⚠️ Η τιμή του DGX Spark αυξάνεται συχνά — το ακριβές κόστος οριστικοποιείται την ημέρα της αγοράς. Η αγορά γίνεται στο όνομα της ομάδας/εταιρείας και το μηχάνημα αποτελεί εξοπλισμό εργασίας.</div>
+  </div>
+</section>
+
+<!-- ================= 7. ΟΙΚΟΝΟΜΙΚΟΙ ΟΡΟΙ ================= -->
+<section>
+  <div class="wrap">
+    <div class="kicker">07 · Οικονομικοί όροι</div>
+    <h2>Οι αριθμοί</h2>
+    <table>
+      <tr><th>Στοιχείο</th><th>Ποσό</th></tr>
+      <tr class="highlight-row"><td><b>Μηνιαίος μισθός (πλήρης απασχόληση)</b></td><td class="price">€2.500</td></tr>
+      <tr><td><b>Hardware: NVIDIA DGX Spark</b> (εφάπαξ, τιμή ημέρας)</td><td class="price">~€4.000</td></tr>
+      <tr><td>Δοκιμαστική περίοδος</td><td>2 μήνες (προτείνεται)</td></tr>
+      <tr><td>Έναρξη</td><td>Άμεσα — εντός Σεπτεμβρίου 2026</td></tr>
+      <tr><td>Τρόπος εργασίας</td><td>Εξ αποστάσεως + φυσικές συναντήσεις όπως χρειαστεί · βάση: Λευκωσία</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 8. ΠΑΡΑΔΟΤΕΑ ================= -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">08 · Άμεση αξία</div>
+    <h2>Παραδοτέα πρώτου μήνα</h2>
+    <table>
+      <tr><th>Χρονικό παράθυρο</th><th>Παραδοτέο</th></tr>
+      <tr><td><b>Εβδομάδες 1–2</b></td><td>Τελικό voice model του Φειδία (πιστοποιημένη ποιότητα) + demo lip sync σε 2 βίντεο</td></tr>
+      <tr><td><b>Εβδομάδες 3–4</b></td><td>Πλήρες pipeline σε λειτουργία + <b>10–15 πρώτες παραγωγές σε 3 γλώσσες</b></td></tr>
+      <tr><td><b>Συνεχώς μετά</b></td><td>Σταθερή εβδομαδιαία παραγωγή με αυξανόμενο ρυθμό — στόχος: 20+ βίντεο/εβδομάδα σε 7+ γλώσσες</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 9. ΕΠΙΚΟΙΝΩΝΙΑ ================= -->
+<section>
+  <div class="wrap">
+    <div class="contact" style="text-align:center">
+      <div class="kicker">09 · Επικοινωνία</div>
+      <h2 style="text-align:center">Αν ενδιαφέρεστε, είμαι εδώ</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Γιώργος Αλεξάνδρου · Λευκωσία</p>
+      <div class="row" style="justify-content:center">
+        <div class="item"><b>Email</b><a href="mailto:hello@codeitlab.com">hello@codeitlab.com</a></div>
+        <div class="item"><b>Τηλέφωνο</b><a href="tel:+35794009717">+357 94 009 717</a></div>
+      </div>
+      <a class="btn" href="mailto:hello@codeitlab.com?subject=Πρόταση%20Ένταξης%20—%20AI%20Video%20%26%20Voice%20Production">Στείλτε μου μήνυμα →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. LIVE DEMO ================= -->
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker">10 · Live demo — η δουλειά ήδη έτοιμη</div>
+    <h2>Ακούστε και δείτε τον Φειδία σε 11 γλώσσες</h2>
+    <p class="lead">Το παρακάτω δείγμα μεταγλωττίστηκε με AI voice cloning από πραγματικό υλικό του Φειδία (YouTube short «Τα online γραφεία της Άμεσης Δημοκρατίας») και συγχρονίστηκαν τα χείλη του με FaceFusion LipSyncer — τοπικά, χωρίς το υλικό να φύγει από τα χέρια της ομάδας. Πατήστε play σε όποια γλώσσα θέλετε:</p>
+
+    <div class="lang-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px">
+      <div class="card"><h4>🇬🇧 English</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_en.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇪🇸 Español</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_es.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇷🇺 Русский</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_ru.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇩🇪 Deutsch</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_de.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇫🇷 Français</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_fr.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇮🇹 Italiano</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_it.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇵🇹 Português</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_pt.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇵🇱 Polski</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_pl.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇨🇿 Čeština</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_cs.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇨🇳 中文</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_zh.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇯🇵 日本語</h4><video controls preload="none" style="width:100%;border-radius:10px;background:#000;aspect-ratio:9/16"><source src="media/fidias_lipsync_ja.mp4" type="video/mp4"></video></div>
+    </div>
+
+    <div class="callout" style="margin-top:24px"><b>Σημείωση:</b> Τα δείγματα είναι πρώτης γενιάς (συντηρητικές παράμετροι). Σε πλήρη παραγωγή, κάθε γλώσσα περνά από fine-tuning και QC — η ποιότητα ανεβαίνει περαιτέρω. Όλη η επεξεργασία είναι τοπική και ιδιόκτητη.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Πρόταση ισχύουσα για 14 ημέρες από την ημερομηνία έκδοσης · Γιώργος Αλεξάνδρου · 28 Αυγούστου 2026</div>
+</footer>
+
+</body>
+</html>
