@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Φειδίας · Voice Clone &amp; Lip Sync Demo — 11 Γλώσσες</title>
+<style>
+  :root{
+    --ink:#1a2332; --ink-2:#4a5568; --navy:#0f1c2e; --navy-2:#16304a;
+    --gold:#d4a017; --gold-2:#f0c040; --paper:#f7f6f2; --white:#ffffff;
+    --line:#e3e0d8; --teal:#0e7c66;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-size:16px}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 70%,#1d3d61 100%);color:#fff;padding:56px 0 48px;text-align:center}
+  .hero .tag{display:inline-block;background:rgba(212,160,23,.18);border:1px solid rgba(212,160,23,.5);color:var(--gold-2);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:18px;font-weight:600}
+  .hero h1{font-size:36px;font-weight:800;letter-spacing:-.5px}
+  .hero h1 .gold{color:var(--gold-2)}
+  .hero .sub{margin-top:12px;font-size:16px;color:#c8d4e4;max-width:640px;margin-left:auto;margin-right:auto}
+  section{padding:44px 0}
+  .kicker{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+  h2{font-size:26px;font-weight:800;margin-bottom:8px;color:var(--navy)}
+  .lead{font-size:16px;color:var(--ink-2);max-width:760px;margin-bottom:22px}
+  .lang-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 1px 3px rgba(15,28,46,.06)}
+  .card h4{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:10px}
+  .card video{width:100%;border-radius:10px;background:#000;aspect-ratio:9/16}
+  .note{border-left:4px solid var(--gold);background:#fffaf0;padding:14px 18px;border-radius:0 10px 10px 0;margin-top:26px;font-size:14px}
+  .info{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:20px}
+  .info .stat{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+  .info .big{font-size:26px;font-weight:800;color:var(--navy)}
+  .info .big .u{font-size:15px;color:var(--gold);font-weight:800}
+  .info .lbl{font-size:12px;color:var(--ink-2);margin-top:3px}
+  footer{padding:30px 0 44px;color:#8a93a2;font-size:13px;text-align:center}
+  @media(max-width:640px){.hero h1{font-size:26px}.hero{padding:42px 0}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="tag">AI Voice Clone · Lip Sync Demo</span>
+    <h1>Ο Φειδίας μιλάει <span class="gold">11 γλώσσες</span></h1>
+    <p class="sub">Voice cloning από πραγματικό υλικό του Φειδία + συγχρονισμός χειλιών — όλα επεξεργασμένα τοπικά, χωρίς το υλικό να φύγει από την ομάδα.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Live demo</div>
+    <h2>Τα online γραφεία της Άμεσης Δημοκρατίας — σε κάθε γλώσσα</h2>
+    <p class="lead">Πηγή: YouTube short «Ελάτε να σας δείξω τα γραφεία της Άμεσης Δημοκρατίας». Πατήστε play:</p>
+
+    <div class="lang-grid">
+      <div class="card"><h4>🇬🇧 English</h4><video controls preload="none"><source src="media/fidias_lipsync_en.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇪🇸 Español</h4><video controls preload="none"><source src="media/fidias_lipsync_es.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇷🇺 Русский</h4><video controls preload="none"><source src="media/fidias_lipsync_ru.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇩🇪 Deutsch</h4><video controls preload="none"><source src="media/fidias_lipsync_de.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇫🇷 Français</h4><video controls preload="none"><source src="media/fidias_lipsync_fr.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇮🇹 Italiano</h4><video controls preload="none"><source src="media/fidias_lipsync_it.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇵🇹 Português</h4><video controls preload="none"><source src="media/fidias_lipsync_pt.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇵🇱 Polski</h4><video controls preload="none"><source src="media/fidias_lipsync_pl.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇨🇿 Čeština</h4><video controls preload="none"><source src="media/fidias_lipsync_cs.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇨🇳 中文</h4><video controls preload="none"><source src="media/fidias_lipsync_zh.mp4" type="video/mp4"></video></div>
+      <div class="card"><h4>🇯🇵 日本語</h4><video controls preload="none"><source src="media/fidias_lipsync_ja.mp4" type="video/mp4"></video></div>
+    </div>
+
+    <div class="info">
+      <div class="stat"><div class="big">11 <span class="u">γλώσσες</span></div><div class="lbl">EN ES RU DE FR IT PT PL CS ZH JA</div></div>
+      <div class="stat"><div class="big">100% <span class="u">τοπικά</span></div><div class="lbl">FaceFusion LipSyncer (CoreML, Mac M4)</div></div>
+      <div class="stat"><div class="big">8 <span class="u">ref clips</span></div><div class="lbl">live speech, κυπριακό ιδίωμα</div></div>
+      <div class="stat"><div class="big">0 <span class="u">recurring κόστη</span></div><div class="lbl">χωρίς cloud API</div></div>
+    </div>
+
+    <div class="note"><b>Σημείωση:</b> Τα δείγματα είναι πρώτης γενιάς (συντηρητικές παράμετροι). Σε πλήρη παραγωγή, κάθε γλώσσα περνά από fine-tuning και QC — η ποιότητα ανεβαίνει περαιτέρω. Όλη η επεξεργασία είναι τοπική και ιδιόκτητη.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Γιώργος Αλεξάνδρου · CodeitLab · hello@codeitlab.com · Αύγουστος 2026</div>
+</footer>
+
+</body>
+</html>
