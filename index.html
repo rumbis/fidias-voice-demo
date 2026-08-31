@@ -26,6 +26,7 @@
   .card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 1px 3px rgba(15,28,46,.06)}
   .card h4{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:10px}
   .card video{width:100%;border-radius:10px;background:#000;aspect-ratio:9/16}
+  .card.wide video{aspect-ratio:16/9}
   .note{border-left:4px solid var(--gold);background:#fffaf0;padding:14px 18px;border-radius:0 10px 10px 0;margin-top:26px;font-size:14px}
   .info{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:20px}
   .info .stat{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
@@ -68,6 +69,21 @@
     </div>
 
     <div class="note"><b>Σημείωση:</b> Τα δείγματα είναι πρώτης γενιάς (συντηρητικές παράμετροι). Σε πλήρη παραγωγή, κάθε γλώσσα περνά από fine-tuning και QC — η ποιότητα ανεβαίνει περαιτέρω. Όλη η επεξεργασία είναι τοπική και ιδιόκτητη.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Podcast demo</div>
+    <h2>Το podcast «Christine» — μεταγλωττισμένο σε 4 γλώσσες</h2>
+    <p class="lead">Πλήρες επεισόδιο με lip sync (16:9), φωνή-clone και των δύο ομιλητών. Πατήστε play:</p>
+
+    <div class="lang-grid">
+      <div class="card wide"><h4>🇩🇪 Deutsch</h4><video controls preload="none"><source src="media/podcast_lipsync_de.mp4" type="video/mp4"></video></div>
+      <div class="card wide"><h4>🇮🇹 Italiano</h4><video controls preload="none"><source src="media/podcast_lipsync_it.mp4" type="video/mp4"></video></div>
+      <div class="card wide"><h4>🇪🇸 Español</h4><video controls preload="none"><source src="media/podcast_lipsync_es.mp4" type="video/mp4"></video></div>
+      <div class="card wide"><h4>🇫🇷 Français</h4><video controls preload="none"><source src="media/podcast_lipsync_fr.mp4" type="video/mp4"></video></div>
+    </div>
   </div>
 </section>
 
