@@ -56,9 +56,11 @@
   .ba-lbl{position:absolute;top:10px;z-index:6;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
   .ba-lbl-l{left:10px}
   .ba-lbl-r{right:10px;background:rgba(212,160,23,.9);color:#10233a}
-  .ba-ctrl{position:absolute;left:0;right:0;bottom:0;z-index:8;padding:14px 16px;display:flex;align-items:center;gap:12px;background:linear-gradient(transparent,rgba(0,0,0,.72));pointer-events:auto}
-  .ba-ctrl button{width:50px;height:50px;border-radius:50%;border:none;background:rgba(255,255,255,.94);color:#10233a;font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3)}
-  .ba-ctrl .ba-time{color:#fff;font-size:13px;font-variant-numeric:tabular-nums;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+  .ba-ctrl{position:absolute;left:0;right:0;bottom:0;z-index:8;padding:12px 16px;display:flex;align-items:center;gap:12px;background:linear-gradient(transparent,rgba(0,0,0,.72));pointer-events:auto}
+  .ba-ctrl button{width:46px;height:46px;border-radius:50%;border:none;background:rgba(255,255,255,.94);color:#10233a;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3);flex:none}
+  .ba-prog{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.35);cursor:pointer;position:relative}
+  .ba-prog .ba-fill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:#d4a017;width:0%}
+  .ba-ctrl .ba-time{color:#fff;font-size:13px;font-variant-numeric:tabular-nums;text-shadow:0 1px 2px rgba(0,0,0,.6);flex:none}
   .callout b{color:var(--navy)}
   .warn{border-left-color:#c0392b;background:#fdf3f1}
   /* ---------- PROOF ---------- */
@@ -195,6 +197,7 @@
       <tr><td>Ενοικίαση H200</td><td>141GB</td><td><b>$6,53/ώρα</b> · 24/7 ≈ $4.770/μήνα</td></tr>
       <tr class="highlight-row"><td><b>DGX Spark — ιδιόκτητο</b></td><td><b>128GB unified (~100GB+ διαθέσιμη VRAM)</b></td><td><b>εφάπαξ €6.000 → ~€0/μήνα μετά</b></td></tr>
     </table>
+    <div class="callout warn"><b>⚠️ Συγκριτική βάση:</b> οι τιμές ενοικίασης αφορούν <b>ΜΟΝΟ το GPU υλικό</b> — <b>χωρίς καμία λύση συγχρονισμού χειλιών</b>. Το lip sync σε cloud απαιτεί πρόσθετα εργαλεία/υπηρεσίες με επιπλέον κόστος· το DGX Spark περιλαμβάνει hardware + πλήρες pipeline μαζί, στο εφάπαξ κόστος.</div>
     <div class="callout"><b>Η λογική:</b> τα T4/L4/A100 είναι χαμηλότερης κλάσης — η ουσιαστική σύγκριση με το Spark γίνεται με RTX PRO 6000/H100/H200. Με ενοικίαση, το μηνιαίο κόστος ξεπερνά τον εξοπλισμό μέσα σε λίγους μήνες (το H100 μόνο ~3 μήνες = €6.000) — και το πρόσωπο/φωνή του Φειδία ανεβαίνουν σε τρίτο cloud. Με το Spark, όλα μένουν στο γραφείο της ομάδας.</div>
     <div class="callout warn"><b>Κόστος:</b> έως <b>€6.000</b> εφάπαξ (συμπ. μεταφορικά/ΦΠΑ). ⚠️ Η τιμή του DGX Spark αυξάνεται συχνά — το ακριβές κόστος οριστικοποιείται την ημέρα της αγοράς. Το μηχάνημα <b>ανήκει στην Άμεση Δημοκρατία</b> και χρησιμοποιείται αποκλειστικά για τις ανάγκες της ομάδας.</div>
   </div>
@@ -274,26 +277,51 @@
     <h3 style="margin-top:34px;font-size:20px;font-weight:800;color:var(--navy)">Σύγκριση — πριν / μετά (DE)</h3>
     <p class="lead">Το ίδιο απόσπασμα σε δύο εκδοχές επεξεργασίας — τραβήξτε τη γραμμή για να δείτε τη διαφορά στο πρόσωπο και το στόμα:</p>
     <div class="ba-wrap" id="baProp">
-      <video id="baPBefore" controls playsinline preload="none" src="media/podcast_lipsync_de.mp4"></video>
+      <video id="baPBefore" playsinline preload="none" src="media/podcast_lipsync_de.mp4"></video>
       <video id="baPAfter" class="ba-after" muted playsinline preload="none" src="media/podcast_quality_de.mp4"></video>
       <div class="ba-handle"></div>
       <div class="ba-lbl ba-lbl-l">Πριν</div>
       <div class="ba-lbl ba-lbl-r">Μετά</div>
+      <div class="ba-ctrl"><button class="ba-play" id="baPropPlay" aria-label="play/pause">▶</button><div class="ba-prog" id="baPropProg"><div class="ba-fill" id="baPropFill"></div></div><div class="ba-time"><span class="ba-cur" id="baPropCur">0:00</span> / <span class="ba-dur" id="baPropDur">0:00</span></div></div>
     </div>
     <script>
     (function(){
-      var wrap=document.getElementById('baProp'), before=document.getElementById('baPBefore'), after=document.getElementById('baPAfter');
-      function setX(p){p=Math.max(0,Math.min(100,p));wrap.style.setProperty('--ba-x',p+'%');}
-      var dragging=false;
-      function pos(e){var r=wrap.getBoundingClientRect();var x=(e.clientX||(e.touches&&e.touches[0]&&e.touches[0].clientX)||0)-r.left;setX(x/r.width*100);}
-      wrap.addEventListener('pointerdown',function(e){dragging=true;pos(e);if(wrap.setPointerCapture)wrap.setPointerCapture(e.pointerId);});
-      wrap.addEventListener('pointermove',function(e){if(dragging)pos(e);});
-      ['pointerup','pointercancel'].forEach(function(ev){wrap.addEventListener(ev,function(){dragging=false;});});
-      before.addEventListener('play',function(){try{after.play();}catch(e){}});
-      before.addEventListener('pause',function(){try{after.pause();}catch(e){}});
-      before.addEventListener('seeked',function(){try{after.currentTime=Math.min(before.currentTime,after.duration||before.currentTime);}catch(e){}});
-      before.addEventListener('timeupdate',function(){try{if(Math.abs(after.currentTime-before.currentTime)>0.15&&before.currentTime<(after.duration||100)-0.05)after.currentTime=before.currentTime;}catch(e){}});
-      before.addEventListener('ended',function(){try{after.pause();after.currentTime=Math.min(before.duration||0,after.duration||0);}catch(e){}});
+      var wrap=document.getElementById('baProp'), a=document.getElementById('baPBefore'), b=document.getElementById('baPAfter'),
+          playBtn=document.getElementById('baPropPlay'), prog=document.getElementById('baPropProg'), fill=document.getElementById('baPropFill'),
+          curEl=document.getElementById('baPropCur'), durEl=document.getElementById('baPropDur');
+      function setX(p){p=Math.max(3,Math.min(97,p));wrap.style.setProperty('--ba-x',p+'%');}
+      var dragging=false, moved=false, startX=null;
+      function xOf(e){return e.clientX!==undefined?e.clientX:(e.touches&&e.touches[0]?e.touches[0].clientX:0);}
+      wrap.addEventListener('pointerdown',function(e){
+        if(e.target.closest('.ba-ctrl')||e.target.closest('.ba-lbl'))return;
+        dragging=false;moved=false;startX=xOf(e);
+      });
+      wrap.addEventListener('pointermove',function(e){
+        if(startX!==null&&Math.abs(xOf(e)-startX)>6){dragging=true;moved=true;}
+        if(dragging){var r=wrap.getBoundingClientRect();setX((xOf(e)-r.left)/r.width*100);}
+      });
+      ['pointerup','pointercancel'].forEach(function(ev){wrap.addEventListener(ev,function(){dragging=false;startX=null;});});
+      wrap.addEventListener('click',function(e){
+        if(e.target.closest('.ba-ctrl')||e.target.closest('.ba-lbl')||moved)return;
+        if(a.paused){try{a.play();}catch(err){}}else{a.pause();}
+      });
+      function link(src,dst){
+        src.addEventListener('play',function(){try{dst.play();}catch(e){}});
+        src.addEventListener('pause',function(){try{dst.pause();}catch(e){}});
+        src.addEventListener('seeked',function(){try{dst.currentTime=Math.min(src.currentTime,dst.duration||src.currentTime);}catch(e){}});
+        src.addEventListener('ended',function(){try{dst.pause();dst.currentTime=Math.min(src.duration||0,dst.duration||0);}catch(e){}});
+      }
+      link(a,b); link(b,a);
+      function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+      function upd(){if(a.duration){fill.style.width=Math.min(100,a.currentTime/a.duration*100)+'%';curEl.textContent=fmt(a.currentTime);}}
+      playBtn.addEventListener('click',function(e){e.stopPropagation();if(a.paused){try{a.play();}catch(err){}}else{a.pause();}});
+      a.addEventListener('play',function(){playBtn.textContent='⏸';});
+      a.addEventListener('pause',function(){playBtn.textContent='▶';});
+      a.addEventListener('timeupdate',upd);
+      a.addEventListener('loadedmetadata',function(){durEl.textContent=fmt(a.duration);upd();});
+      a.addEventListener('durationchange',function(){durEl.textContent=fmt(a.duration);upd();});
+      a.addEventListener('ended',function(){playBtn.textContent='▶';});
+      prog.addEventListener('click',function(e){var r=prog.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));if(a.duration){a.currentTime=f*a.duration;upd();}});
     })();
     </script>
 
@@ -305,7 +333,7 @@
       <div class="ba-handle"></div>
       <div class="ba-lbl ba-lbl-l">Χωρίς lip sync</div>
       <div class="ba-lbl ba-lbl-r">Με lip sync</div>
-      <div class="ba-ctrl"><button class="ba-play" id="baPropRawPlay" aria-label="play/pause">▶</button><div class="ba-time"><span class="ba-cur" id="baPropRawCur">0:00</span> / <span class="ba-dur" id="baPropRawDur">0:00</span></div></div>
+      <div class="ba-ctrl"><button class="ba-play" id="baPropRawPlay" aria-label="play/pause">▶</button><div class="ba-prog" id="baPropRawProg"><div class="ba-fill" id="baPropRawFill"></div></div><div class="ba-time"><span class="ba-cur" id="baPropRawCur">0:00</span> / <span class="ba-dur" id="baPropRawDur">0:00</span></div></div>
     </div>
     <script>
     (function(){
@@ -333,14 +361,17 @@
         src.addEventListener('ended',function(){try{dst.pause();dst.currentTime=Math.min(src.duration||0,dst.duration||0);}catch(e){}});
       }
       link(a,b); link(b,a);
-      var playBtn=document.getElementById('baPropRawPlay'), curEl=document.getElementById('baPropRawCur'), durEl=document.getElementById('baPropRawDur');
+      var playBtn=document.getElementById('baPropRawPlay'), prog=document.getElementById('baPropRawProg'), fill=document.getElementById('baPropRawFill'), curEl=document.getElementById('baPropRawCur'), durEl=document.getElementById('baPropRawDur');
       function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
-      playBtn.addEventListener('click',function(){if(b.paused){try{b.play();}catch(e){}}else{b.pause();}});
+      function upd(){if(b.duration){fill.style.width=Math.min(100,b.currentTime/b.duration*100)+'%';curEl.textContent=fmt(b.currentTime);}}
+      playBtn.addEventListener('click',function(e){e.stopPropagation();if(b.paused){try{b.play();}catch(err){}}else{b.pause();}});
       b.addEventListener('play',function(){playBtn.textContent='⏸';});
       b.addEventListener('pause',function(){playBtn.textContent='▶';});
-      b.addEventListener('timeupdate',function(){curEl.textContent=fmt(b.currentTime);});
-      b.addEventListener('loadedmetadata',function(){durEl.textContent=fmt(b.duration);});
-      b.addEventListener('durationchange',function(){durEl.textContent=fmt(b.duration);});
+      b.addEventListener('timeupdate',upd);
+      b.addEventListener('loadedmetadata',function(){durEl.textContent=fmt(b.duration);upd();});
+      b.addEventListener('durationchange',function(){durEl.textContent=fmt(b.duration);upd();});
+      b.addEventListener('ended',function(){playBtn.textContent='▶';});
+      prog.addEventListener('click',function(e){var r=prog.getBoundingClientRect(),f=Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));if(b.duration){b.currentTime=f*b.duration;upd();}});
     })();
     </script>
 
