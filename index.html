@@ -150,30 +150,25 @@
     (function(){
       var wrap=document.getElementById('baRaw'), a=document.getElementById('baRawBefore'), b=document.getElementById('baRawAfter');
       function setX(p){p=Math.max(3,Math.min(97,p));wrap.style.setProperty('--ba-x',p+'%');}
-      var dragging=false, startX=0, moved=false;
-      function pos(e){var r=wrap.getBoundingClientRect();var x=(e.clientX||(e.touches&&e.touches[0]&&e.touches[0].clientX)||0)-r.left;setX(x/r.width*100);}
+      var dragging=false, moved=false, startX=null;
+      function xOf(e){return e.clientX!==undefined?e.clientX:(e.touches&&e.touches[0]?e.touches[0].clientX:0);}
       wrap.addEventListener('pointerdown',function(e){
         if(e.target.closest('.ba-ctrl')||e.target.closest('.ba-lbl'))return;
-        dragging=false;moved=false;startX=(e.clientX||(e.touches&&e.touches[0]&&e.touches[0].clientX)||0);
-        if(wrap.setPointerCapture)wrap.setPointerCapture(e.pointerId);
+        dragging=false;moved=false;startX=xOf(e);
       });
       wrap.addEventListener('pointermove',function(e){
-        var x=(e.clientX||(e.touches&&e.touches[0]&&e.touches[0].clientX)||0);
-        if(Math.abs(x-startX)>6){dragging=true;moved=true;}
-        if(dragging)pos(e);
+        if(startX!==null&&Math.abs(xOf(e)-startX)>6){dragging=true;moved=true;}
+        if(dragging){var r=wrap.getBoundingClientRect();setX((xOf(e)-r.left)/r.width*100);}
       });
-      ['pointerup','pointercancel'].forEach(function(ev){wrap.addEventListener(ev,function(e){
-        var wasDrag=dragging;
-        dragging=false;
-        if(!wasDrag&&!moved&&!e.target.closest('.ba-ctrl')&&!e.target.closest('.ba-lbl')){
-          if(b.paused){try{b.play();}catch(err){}}else{b.pause();}
-        }
-      });});
+      ['pointerup','pointercancel'].forEach(function(ev){wrap.addEventListener(ev,function(){dragging=false;startX=null;});});
+      wrap.addEventListener('click',function(e){
+        if(e.target.closest('.ba-ctrl')||e.target.closest('.ba-lbl')||moved)return;
+        if(b.paused){try{b.play();}catch(err){}}else{b.pause();}
+      });
       function link(src,dst){
         src.addEventListener('play',function(){try{dst.play();}catch(e){}});
         src.addEventListener('pause',function(){try{dst.pause();}catch(e){}});
         src.addEventListener('seeked',function(){try{dst.currentTime=Math.min(src.currentTime,dst.duration||src.currentTime);}catch(e){}});
-        src.addEventListener('timeupdate',function(){try{if(Math.abs(dst.currentTime-src.currentTime)>0.15&&src.currentTime<(dst.duration||100)-0.05)dst.currentTime=src.currentTime;}catch(e){}});
         src.addEventListener('ended',function(){try{dst.pause();dst.currentTime=Math.min(src.duration||0,dst.duration||0);}catch(e){}});
       }
       link(a,b); link(b,a);
