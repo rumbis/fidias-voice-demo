@@ -47,13 +47,18 @@
   /* ---------- CALLOUT ---------- */
   .callout{border-left:4px solid var(--gold);background:#fffaf0;padding:16px 20px;border-radius:0 10px 10px 0;margin:18px 0;font-size:14.5px}
   .ba-wrap{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;user-select:none;touch-action:none;box-shadow:0 2px 8px rgba(15,28,46,.12)}
-  .ba-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+  .ba-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;z-index:1}
+  .ba-after,.ba-before{pointer-events:none;z-index:2}
   .ba-after{clip-path:inset(0 0 0 var(--ba-x,50%))}
+  .ba-before{clip-path:inset(0 calc(100% - var(--ba-x,50%)) 0 0)}
   .ba-handle{position:absolute;top:0;bottom:0;left:var(--ba-x,50%);width:3px;background:#fff;transform:translateX(-1.5px);z-index:5;box-shadow:0 0 6px rgba(0,0,0,.7)}
   .ba-handle::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:9px solid #fff;border-radius:50%}
   .ba-lbl{position:absolute;top:10px;z-index:6;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(0,0,0,.6);color:#fff}
   .ba-lbl-l{left:10px}
   .ba-lbl-r{right:10px;background:rgba(212,160,23,.9);color:#10233a}
+  .ba-ctrl{position:absolute;left:0;right:0;bottom:0;z-index:8;padding:14px 16px;display:flex;align-items:center;gap:12px;background:linear-gradient(transparent,rgba(0,0,0,.72));pointer-events:auto}
+  .ba-ctrl button{width:50px;height:50px;border-radius:50%;border:none;background:rgba(255,255,255,.94);color:#10233a;font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .ba-ctrl .ba-time{color:#fff;font-size:13px;font-variant-numeric:tabular-nums;text-shadow:0 1px 2px rgba(0,0,0,.6)}
   .callout b{color:var(--navy)}
   .warn{border-left-color:#c0392b;background:#fdf3f1}
   /* ---------- PROOF ---------- */
@@ -295,11 +300,12 @@
     <h3 style="margin-top:34px;font-size:20px;font-weight:800;color:var(--navy)">Η μετάγλωττιση σε δράση — χωρίς lip sync vs με lip sync</h3>
     <p class="lead">Το ίδιο απόσπασμα: αριστερά το αυθεντικό υλικό (ελληνικά, χωρίς επεξεργασία), δεξιά η μεταγλωττισμένη εκδοχή (γερμανικά) με πλήρες lip sync σε HD — σύρετε τη γραμμή:</p>
     <div class="ba-wrap" id="baPropRaw">
-      <video id="baPropRawBefore" muted playsinline preload="none" src="media/podcast_raw_de.mp4"></video>
-      <video id="baPropRawAfter" class="ba-after" controls playsinline preload="none" src="media/podcast_quality_de.mp4"></video>
+      <video id="baPropRawAfter" playsinline preload="none" src="media/podcast_quality_de.mp4"></video>
+      <video id="baPropRawBefore" class="ba-before" muted playsinline preload="none" src="media/podcast_raw_de.mp4"></video>
       <div class="ba-handle"></div>
       <div class="ba-lbl ba-lbl-l">Χωρίς lip sync</div>
       <div class="ba-lbl ba-lbl-r">Με lip sync</div>
+      <div class="ba-ctrl"><button class="ba-play" id="baPropRawPlay" aria-label="play/pause">▶</button><div class="ba-time"><span class="ba-cur" id="baPropRawCur">0:00</span> / <span class="ba-dur" id="baPropRawDur">0:00</span></div></div>
     </div>
     <script>
     (function(){
@@ -318,6 +324,14 @@
         src.addEventListener('ended',function(){try{dst.pause();dst.currentTime=Math.min(src.duration||0,dst.duration||0);}catch(e){}});
       }
       link(a,b); link(b,a);
+      var playBtn=document.getElementById('baPropRawPlay'), curEl=document.getElementById('baPropRawCur'), durEl=document.getElementById('baPropRawDur');
+      function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+      playBtn.addEventListener('click',function(){if(b.paused){try{b.play();}catch(e){}}else{b.pause();}});
+      b.addEventListener('play',function(){playBtn.textContent='⏸';});
+      b.addEventListener('pause',function(){playBtn.textContent='▶';});
+      b.addEventListener('timeupdate',function(){curEl.textContent=fmt(b.currentTime);});
+      b.addEventListener('loadedmetadata',function(){durEl.textContent=fmt(b.duration);});
+      b.addEventListener('durationchange',function(){durEl.textContent=fmt(b.duration);});
     })();
     </script>
 
