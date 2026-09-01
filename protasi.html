@@ -286,9 +286,9 @@
       ['pointerup','pointercancel'].forEach(function(ev){wrap.addEventListener(ev,function(){dragging=false;});});
       before.addEventListener('play',function(){try{after.play();}catch(e){}});
       before.addEventListener('pause',function(){try{after.pause();}catch(e){}});
-      before.addEventListener('seeked',function(){try{after.currentTime=before.currentTime;}catch(e){}});
-      before.addEventListener('timeupdate',function(){try{if(Math.abs(after.currentTime-before.currentTime)>0.15)after.currentTime=before.currentTime;}catch(e){}});
-      before.addEventListener('ended',function(){try{after.pause();after.currentTime=before.currentTime;}catch(e){}});
+      before.addEventListener('seeked',function(){try{after.currentTime=Math.min(before.currentTime,after.duration||before.currentTime);}catch(e){}});
+      before.addEventListener('timeupdate',function(){try{if(Math.abs(after.currentTime-before.currentTime)>0.15&&before.currentTime<(after.duration||100)-0.05)after.currentTime=before.currentTime;}catch(e){}});
+      before.addEventListener('ended',function(){try{after.pause();after.currentTime=Math.min(before.duration||0,after.duration||0);}catch(e){}});
     })();
     </script>
 
@@ -313,9 +313,9 @@
       function link(src,dst){
         src.addEventListener('play',function(){try{dst.play();}catch(e){}});
         src.addEventListener('pause',function(){try{dst.pause();}catch(e){}});
-        src.addEventListener('seeked',function(){try{dst.currentTime=src.currentTime;}catch(e){}});
-        src.addEventListener('timeupdate',function(){try{if(Math.abs(dst.currentTime-src.currentTime)>0.15)dst.currentTime=src.currentTime;}catch(e){}});
-        src.addEventListener('ended',function(){try{dst.pause();dst.currentTime=src.currentTime;}catch(e){}});
+        src.addEventListener('seeked',function(){try{dst.currentTime=Math.min(src.currentTime,dst.duration||src.currentTime);}catch(e){}});
+        src.addEventListener('timeupdate',function(){try{if(Math.abs(dst.currentTime-src.currentTime)>0.15&&src.currentTime<(dst.duration||100)-0.05)dst.currentTime=src.currentTime;}catch(e){}});
+        src.addEventListener('ended',function(){try{dst.pause();dst.currentTime=Math.min(src.duration||0,dst.duration||0);}catch(e){}});
       }
       link(a,b); link(b,a);
     })();
