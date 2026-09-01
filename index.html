@@ -129,6 +129,38 @@
 
 <section>
   <div class="wrap">
+    <div class="kicker">Η μετάγλωττιση σε δράση</div>
+    <h2>Χωρίς lip sync vs με high-quality lip sync</h2>
+    <p class="lead">Το ίδιο απόσπασμα: αριστερά το αυθεντικό υλικό (ελληνικά, χωρίς επεξεργασία), δεξιά η μεταγλωττισμένη εκδοχή (γερμανικά) με πλήρες lip sync σε HD — σύρετε τη γραμμή:</p>
+    <div class="ba-wrap" id="baRaw">
+      <video id="baRawBefore" controls playsinline preload="none" src="media/podcast_raw_de.mp4"></video>
+      <video id="baRawAfter" class="ba-after" muted playsinline preload="none" src="media/podcast_quality_de.mp4"></video>
+      <div class="ba-handle"></div>
+      <div class="ba-lbl ba-lbl-l">Χωρίς lip sync</div>
+      <div class="ba-lbl ba-lbl-r">Με lip sync</div>
+    </div>
+    <div class="note"><b>Σημείωση:</b> Αριστερά το πρωτότυπο με τη φυσική κίνηση των χειλιών, δεξιά η μεταγλωττισμένη εκδοχή με συγχρονισμένα χείλη και καθαρό πρόσωπο.</div>
+    <script>
+    (function(){
+      var wrap=document.getElementById('baRaw'), before=document.getElementById('baRawBefore'), after=document.getElementById('baRawAfter');
+      function setX(p){p=Math.max(0,Math.min(100,p));wrap.style.setProperty('--ba-x',p+'%');}
+      var dragging=false;
+      function pos(e){var r=wrap.getBoundingClientRect();var x=(e.clientX||(e.touches&&e.touches[0]&&e.touches[0].clientX)||0)-r.left;setX(x/r.width*100);}
+      wrap.addEventListener('pointerdown',function(e){dragging=true;pos(e);if(wrap.setPointerCapture)wrap.setPointerCapture(e.pointerId);});
+      wrap.addEventListener('pointermove',function(e){if(dragging)pos(e);});
+      ['pointerup','pointercancel'].forEach(function(ev){wrap.addEventListener(ev,function(){dragging=false;});});
+      before.addEventListener('play',function(){try{after.play();}catch(e){}});
+      before.addEventListener('pause',function(){try{after.pause();}catch(e){}});
+      before.addEventListener('seeked',function(){try{after.currentTime=before.currentTime;}catch(e){}});
+      before.addEventListener('timeupdate',function(){try{if(Math.abs(after.currentTime-before.currentTime)>0.15)after.currentTime=before.currentTime;}catch(e){}});
+      before.addEventListener('ended',function(){try{after.pause();after.currentTime=before.currentTime;}catch(e){}});
+    })();
+    </script>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <div class="kicker">Πέρα από το demo</div>
     <h2>Τι μπορεί να γίνει σε κλίμακα</h2>
     <p class="lead">Το ίδιο pipeline δεν περιορίζεται σε shorts — επεκτείνεται σε πλήρη επεισόδια podcast και μαζική πολύγλωσση παραγωγή:</p>
