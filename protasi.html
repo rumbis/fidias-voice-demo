@@ -295,26 +295,29 @@
     <h3 style="margin-top:34px;font-size:20px;font-weight:800;color:var(--navy)">Η μετάγλωττιση σε δράση — χωρίς lip sync vs με lip sync</h3>
     <p class="lead">Το ίδιο απόσπασμα: αριστερά το αυθεντικό υλικό (ελληνικά, χωρίς επεξεργασία), δεξιά η μεταγλωττισμένη εκδοχή (γερμανικά) με πλήρες lip sync σε HD — σύρετε τη γραμμή:</p>
     <div class="ba-wrap" id="baPropRaw">
-      <video id="baPropRawBefore" controls playsinline preload="none" src="media/podcast_raw_de.mp4"></video>
-      <video id="baPropRawAfter" class="ba-after" muted playsinline preload="none" src="media/podcast_quality_de.mp4"></video>
+      <video id="baPropRawBefore" muted playsinline preload="none" src="media/podcast_raw_de.mp4"></video>
+      <video id="baPropRawAfter" class="ba-after" controls playsinline preload="none" src="media/podcast_quality_de.mp4"></video>
       <div class="ba-handle"></div>
       <div class="ba-lbl ba-lbl-l">Χωρίς lip sync</div>
       <div class="ba-lbl ba-lbl-r">Με lip sync</div>
     </div>
     <script>
     (function(){
-      var wrap=document.getElementById('baPropRaw'), before=document.getElementById('baPropRawBefore'), after=document.getElementById('baPropRawAfter');
+      var wrap=document.getElementById('baPropRaw'), a=document.getElementById('baPropRawBefore'), b=document.getElementById('baPropRawAfter');
       function setX(p){p=Math.max(0,Math.min(100,p));wrap.style.setProperty('--ba-x',p+'%');}
       var dragging=false;
       function pos(e){var r=wrap.getBoundingClientRect();var x=(e.clientX||(e.touches&&e.touches[0]&&e.touches[0].clientX)||0)-r.left;setX(x/r.width*100);}
       wrap.addEventListener('pointerdown',function(e){dragging=true;pos(e);if(wrap.setPointerCapture)wrap.setPointerCapture(e.pointerId);});
       wrap.addEventListener('pointermove',function(e){if(dragging)pos(e);});
       ['pointerup','pointercancel'].forEach(function(ev){wrap.addEventListener(ev,function(){dragging=false;});});
-      before.addEventListener('play',function(){try{after.play();}catch(e){}});
-      before.addEventListener('pause',function(){try{after.pause();}catch(e){}});
-      before.addEventListener('seeked',function(){try{after.currentTime=before.currentTime;}catch(e){}});
-      before.addEventListener('timeupdate',function(){try{if(Math.abs(after.currentTime-before.currentTime)>0.15)after.currentTime=before.currentTime;}catch(e){}});
-      before.addEventListener('ended',function(){try{after.pause();after.currentTime=before.currentTime;}catch(e){}});
+      function link(src,dst){
+        src.addEventListener('play',function(){try{dst.play();}catch(e){}});
+        src.addEventListener('pause',function(){try{dst.pause();}catch(e){}});
+        src.addEventListener('seeked',function(){try{dst.currentTime=src.currentTime;}catch(e){}});
+        src.addEventListener('timeupdate',function(){try{if(Math.abs(dst.currentTime-src.currentTime)>0.15)dst.currentTime=src.currentTime;}catch(e){}});
+        src.addEventListener('ended',function(){try{dst.pause();dst.currentTime=src.currentTime;}catch(e){}});
+      }
+      link(a,b); link(b,a);
     })();
     </script>
 
